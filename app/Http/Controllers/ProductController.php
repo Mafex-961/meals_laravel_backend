@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Interfaces\ProductInterface;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
+    private $ProductInterface;
+
+    public function __construct(ProductInterface $ProductInterface)
+    {
+        $this->ProductInterface=$ProductInterface;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.products.index');
+        $products = $this->ProductInterface->all();
+        return view('admin.products.index',compact('products'));
 
     }
 
@@ -21,7 +30,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.products.create',compact('categories'));
     }
 
     /**
@@ -29,7 +39,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->ProductInterface->store();
+        return redirect('product');
     }
 
     /**
@@ -45,7 +56,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
+        $categories = Category::all();
+        $products =$this->ProductInterface->findById($id);
+        return view('admin.products.edit',compact('categories','products'));
     }
 
     /**
@@ -53,7 +67,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->ProductInterface->update($id);
+        return redirect('product');
     }
 
     /**
@@ -61,6 +76,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->ProductInterface->destroy($id);
+        return redirect('product');
     }
 }

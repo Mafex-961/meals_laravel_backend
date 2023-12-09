@@ -21,7 +21,6 @@
                             <th scope="col">Name</th>
                             <th scope="col">created_at</th>
                             <th scope="col">updated_at</th>
-
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
