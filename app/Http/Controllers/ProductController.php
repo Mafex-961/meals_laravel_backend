@@ -67,6 +67,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd(request()->all());
         $this->ProductInterface->update($id);
         return redirect('product');
     }

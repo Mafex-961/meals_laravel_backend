@@ -4,7 +4,8 @@ namespace App\Repositories;
 
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 
 class ProductRepository implements ProductInterface
@@ -16,16 +17,13 @@ class ProductRepository implements ProductInterface
 
     public function store()
     {
-
-
-        $imageName = time().'.'.request()->image->extension();
-
         $product = new Product();
         $product->category_id = request()->category_id;
-        $product->name = $imageName;
+        $product->name = request()->name;
         $product->description = request()->description;
 
-        $path = Storage::disk('public')->putFileAs('images', request()->file('image'), $imageName);
+        $imageName = time().'.'.request()->image->extension();
+        request()->image->move(public_path('images'),$imageName);
 
         // Save only the image file name (not the full path) in the database
         $product->image = $imageName;
@@ -41,18 +39,43 @@ class ProductRepository implements ProductInterface
 
     public function update($id)
     {
-        $imageName = time().'.'.request()->image->extension();
 
         $product= $this->findById($id);
         $product->category_id = request()->category_id;
-        $product->name = $imageName;
+        $product->name = request()->name;
         $product->description = request()->description;
 
         // Save the image to the public/images directory
-        $path = Storage::disk('public')->putFileAs('images', request()->file('image'), $imageName);
+        if(request()->hasFile('images')){
+
+            // dd(request()->images);
+            $imageName = time().'.'.request()->images->extension();
+            // dd(pubic_path("images/$product->images"));
+            // dd(public_path());
+            if(File::exists(public_path("images/$product->image"))){
+                // dd('hi');
+                File::delete(public_path("images/$product->image"));
+            }
+            // dd('no');
+
+            request()->images->move(public_path('images'),$imageName);
+
+            $product->image = $imageName;
+        }
+        else{
+
+            $product->image = $product->image;
+
+            }
+
+
+
+
+        // $path = Storage::disk('public')->putFileAs('images', request()->file('image'), $imageName);
+
 
         // Save only the image file name (not the full path) in the database
-        $product->image = $imageName;
+        // $product->image = $imageName;
 
         $product->price = request()->price;
         $product->update();
@@ -61,6 +84,7 @@ class ProductRepository implements ProductInterface
     public function destroy($id)
     {
         $product = $this->findById($id);
+        File::delete(public_path("images/$product->image"));
         $product->delete();
     }
 }

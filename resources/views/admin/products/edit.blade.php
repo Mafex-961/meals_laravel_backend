@@ -59,9 +59,9 @@
                         <label for="imageInput" class="form-label" >Image</label>
                     </div>
                     <div class="col-lg-9">
-                    <input value="{{$products->image}}" type="file" name="image" class="form-control" accept="image/*">
+                    <input  type="file" name="images" class="form-control" accept="image/*">
                     @if (isset($products->image))
-                        <img src="{{ asset('/storage/images/' . $products->image) }}" alt="Current Image" class="mt-2" height="50">
+                        <img src="{{ asset('images/' . $products->image) }}" alt="Current Image" class="mt-2" height="50">
                     @endif
                     </div>
 
