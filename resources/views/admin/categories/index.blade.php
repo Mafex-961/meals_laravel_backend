@@ -41,11 +41,11 @@
                             <td>{{$category->updated_at}}</td>
 
                             <td>
-                                <a href="{{url('category/'.$category->id.'/edit')}}">
+                                <a href="{{url('admin/category/'.$category->id.'/edit')}}">
                                 <button type="button" class="btn btn-sm btn-light">Edit</button>
                                 </a>
 
-                                <form action="{{url('category/'.$category->id)}}" method="POST">
+                                <form action="{{url('admin/category/'.$category->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
@@ -59,7 +59,7 @@
 
                     </tbody>
 
-                    <a href="{{url('category/create')}}">
+                    <a href="{{url('admin/category/create')}}">
                         <button type="button" class="btn btn-primary btn-label waves-effect waves-light"><i class="ri-user-smile-line label-icon align-middle fs-16 me-2"></i> Add</button>
                         </a>
 

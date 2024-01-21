@@ -14,7 +14,8 @@ use App\Repositories\Api\CategoryRepository as ApiCategoryRepository;
 use App\Interfaces\Api\ProductInterface as ApiProductInterface;
 use App\Repositories\Api\ProductRepository as ApiProductrepository;
 
-
+use App\Interfaces\AdminInterface;
+use App\Repositories\AdminRepository;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -40,5 +41,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ApiCategoryInterface::class,ApiCategoryRepository::class);
 
         $this->app->bind(ApiProductInterface::class,ApiProductRepository::class);
+
+        $this->app->bind(AdminInterface::class,AdminRepository::class);
     }
 }

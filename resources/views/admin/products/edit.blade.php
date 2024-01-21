@@ -9,7 +9,7 @@
         <div class="container-fluid">
 
 
-            <form action="{{ url('product/'.$products->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('admin/product/'.$products->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -33,6 +33,12 @@
 
                             @endforelse
                            </select>
+
+                           @error('category_id')
+                           <span class="text-danger text-sm">
+                               {{ $message }}
+                           </span>
+                           @enderror
                     </div>
                 </div>
 
@@ -42,6 +48,12 @@
                     </div>
                     <div class="col-lg-9">
                         <input value="{{$products->name}}" name="name" class="form-control" id="nameInput" placeholder="Enter your name">
+
+                        @error('name')
+                        <span class="text-danger text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
                     </div>
                 </div>
 
@@ -51,6 +63,12 @@
                     </div>
                     <div class="col-lg-9">
                         <input value="{{$products->description}}" name="description" class="form-control" id="descriptionInput" placeholder="Enter your description">
+
+                        @error('descripton')
+                        <span class="text-danger text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
                     </div>
                 </div>
 
@@ -63,6 +81,12 @@
                     @if (isset($products->image))
                         <img src="{{ asset('images/' . $products->image) }}" alt="Current Image" class="mt-2" height="50">
                     @endif
+
+                    @error('image')
+                    <span class="text-danger text-sm">
+                        {{ $message }}
+                    </span>
+                    @enderror
                     </div>
 
                 </div>
@@ -77,6 +101,11 @@
                             <span class="input-group-text">$</span>
                             <span class="input-group-text">0.00</span>
                         </div>
+                        @error('price')
+                        <span class="text-danger text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
                 </div>
 
                 <div class="text-end">

@@ -9,7 +9,7 @@
         <div class="container-fluid">
 
 
-            <form action="{{ url('category/'.$categories->id) }}" method="POST">
+            <form action="{{ url('admin/category/'.$categories->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -19,6 +19,11 @@
                     </div>
                     <div class="col-lg-9">
                         <input value="{{$categories->name}}" name="name" class="form-control" id="nameInput" placeholder="Enter your name">
+                        @error('name')
+                            <span class="text-danger text-sm">
+                                {{ $message }}
+                            </span>
+                            @enderror
                     </div>
                 </div>
 

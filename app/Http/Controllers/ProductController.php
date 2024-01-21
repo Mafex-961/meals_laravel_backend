@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
 use App\Models\Category;
+use App\Http\Requests\ProductStore;
+use App\Http\Requests\ProductUpdate;
 
 class ProductController extends Controller
 {
@@ -37,10 +39,11 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductStore $request)
     {
-        $this->ProductInterface->store();
-        return redirect('product');
+        $data = $request->only(['name','category_id','description','image','price']);
+        $this->ProductInterface->store($data);
+        return redirect('admin/product');
     }
 
     /**
@@ -56,7 +59,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        
+
         $categories = Category::all();
         $products =$this->ProductInterface->findById($id);
         return view('admin.products.edit',compact('categories','products'));
@@ -65,11 +68,11 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductStore $request, string $id)
     {
         // dd(request()->all());
         $this->ProductInterface->update($id);
-        return redirect('product');
+        return redirect('admin/product');
     }
 
     /**
@@ -78,6 +81,6 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $this->ProductInterface->destroy($id);
-        return redirect('product');
+        return redirect('admin/product');
     }
 }

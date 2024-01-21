@@ -18,16 +18,15 @@
                                 </div>
                             </th>
                             <th scope="col">Id</th>
-                            <th scope="col">Category_Id</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($products as $product)
+                        @foreach ($admins as $admin)
 
                         <tr>
                             <td>
@@ -36,25 +35,17 @@
                                     <label class="form-check-label" for="cardtableCheck01"></label>
                                 </div>
                             </td>
-                            <td>{{$product->id}}</td>
-                            <td>{{$product->category? $product->category->name:'hi'}}</td>
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->description}}</td>
-                            <td>
-                                 @if (isset($product->image))
-                                <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" height="50">
-                                @else
-                                No Image
-                                @endif
-                            </td>
-                            <td>{{$product->price}}</td>
+                            <td>{{$admin->id}}</td>
+                            <td>{{$admin->name}}</td>
+                            <td>{{$admin->email}}</td>
+                            <td>{{$admin->password}}</td>
 
                             <td>
-                                <a href="{{url('admin/product/'.$product->id.'/edit')}}">
+                                <a href="{{url('admin/admin/'.$admin->id.'/edit')}}">
                                 <button type="button" class="btn btn-sm btn-light">Edit</button>
                                 </a>
 
-                                <form action="{{url('admin/product/'.$product->id)}}" method="POST">
+                                <form action="{{url('admin/admin/'.$admin->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
@@ -68,7 +59,7 @@
 
                     </tbody>
 
-                    <a href="{{url('admin/product/create')}}">
+                    <a href="{{url('admin/admin/create')}}">
                         <button type="button" class="btn btn-primary btn-label waves-effect waves-light"><i class="ri-user-smile-line label-icon align-middle fs-16 me-2"></i> Add</button>
                         </a>
 
@@ -78,5 +69,4 @@
         </div>
     </div>
 </div>
-
 @endsection

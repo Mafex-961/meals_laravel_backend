@@ -18,17 +18,18 @@
                                 </div>
                             </th>
                             <th scope="col">Id</th>
-                            <th scope="col">Category_Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">Image</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($products as $product)
-
+                        @foreach ($orders as $order)
+                        {{-- {{dd($order->orderdetail)}} --}}
                         <tr>
                             <td>
                                 <div class="form-check">
@@ -36,25 +37,36 @@
                                     <label class="form-check-label" for="cardtableCheck01"></label>
                                 </div>
                             </td>
-                            <td>{{$product->id}}</td>
-                            <td>{{$product->category? $product->category->name:'hi'}}</td>
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->description}}</td>
+                            <td>{{$order->id}}</td>
+                            <td>{{$order->date}}</td>
                             <td>
-                                 @if (isset($product->image))
-                                <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" height="50">
-                                @else
-                                No Image
-                                @endif
+                                @foreach ( $order->orderdetail as $orderdetail )
+                                    {{$orderdetail?->name}} <hr>
+                                @endforeach
                             </td>
-                            <td>{{$product->price}}</td>
+                            <td>
+                                @foreach ( $order->orderdetail as $orderdetail )
+                                    {{$orderdetail?->quantity}} <hr>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ( $order->orderdetail as $orderdetail )
+                                    @if (isset($orderdetail->image))
+                                    <img src="{{ asset('images/' . $orderdetail->image) }}" alt="{{ $orderdetail->name }}" height="20" width="25">
+                                    @else
+                                    No Image
+                                    @endif <hr>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ( $order->orderdetail as $orderdetail )
+                                    {{$orderdetail?->price}} <hr>
+                                @endforeach
+                            </td>
 
                             <td>
-                                <a href="{{url('admin/product/'.$product->id.'/edit')}}">
-                                <button type="button" class="btn btn-sm btn-light">Edit</button>
-                                </a>
 
-                                <form action="{{url('admin/product/'.$product->id)}}" method="POST">
+                                <form action="{{url('admin/order/'.$order->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
@@ -68,9 +80,9 @@
 
                     </tbody>
 
-                    <a href="{{url('admin/product/create')}}">
+                    {{-- <a href="{{url('admin/product/create')}}">
                         <button type="button" class="btn btn-primary btn-label waves-effect waves-light"><i class="ri-user-smile-line label-icon align-middle fs-16 me-2"></i> Add</button>
-                        </a>
+                        </a> --}}
 
                 </table>
             </div>
@@ -78,5 +90,8 @@
         </div>
     </div>
 </div>
+{{-- <div class="">
+    {{ $orders }}
+</div> --}}
 
 @endsection

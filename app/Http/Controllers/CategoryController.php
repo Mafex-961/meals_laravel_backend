@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Interfaces\CategoryInterface;
-use Illuminate\Http\Request;
-
+// use Illuminate\Http\Request;
+use App\Http\Requests\CategoryStore;
+use App\Http\Requests\CategoryUpdate;
 
 
 class CategoryController extends Controller
@@ -39,10 +40,11 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryStore $request)
     {
-        $this->categoryInterface->store();
-        return redirect('category');
+        $data = $request->only(['name']);
+        $this->categoryInterface->store($data);
+        return redirect('admin/category');
     }
 
     /**
@@ -65,10 +67,10 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryUpdate $request, string $id)
     {
         $this->categoryInterface->update($id);
-        return redirect('category');
+        return redirect('admin/category');
     }
 
     /**
@@ -77,6 +79,6 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         $this->categoryInterface->destroy($id);
-        return redirect('category');
+        return redirect('admin/category');
     }
 }

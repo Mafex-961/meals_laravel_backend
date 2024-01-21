@@ -43,6 +43,8 @@
         @yield('content')
         <!-- end main content-->
 
+        <div>hi</div>
+
     </div>
     <!-- END layout-wrapper -->
 

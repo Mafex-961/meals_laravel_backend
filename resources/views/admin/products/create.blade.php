@@ -9,7 +9,7 @@
         <div class="container-fluid">
 
 
-            <form action="{{ url('product') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('admin/product') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row mb-3">
@@ -26,6 +26,12 @@
 
                             @endforelse
                     </select>
+
+                    @error('category_id')
+                    <span class="text-danger text-sm">
+                        {{ $message }}
+                    </span>
+                    @enderror
                     </div>
                 </div>
 
@@ -35,6 +41,12 @@
                     </div>
                     <div class="col-lg-9">
                         <input name="name" class="form-control" id="nameInput" placeholder="Enter your name">
+
+                        @error('name')
+                        <span class="text-danger text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
                     </div>
                 </div>
 
@@ -44,6 +56,12 @@
                     </div>
                     <div class="col-lg-9">
                         <input name="description" class="form-control" id="descriptionInput" placeholder="Enter your description">
+
+                        @error('description')
+                        <span class="text-danger text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
                     </div>
                 </div>
 
@@ -53,6 +71,12 @@
                     </div>
                     <div class="col-lg-9">
                         <input type="file" name="image" class="form-control" accept="image/*">
+
+                        @error('image')
+                        <span class="text-danger text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
                     </div>
                 </div>
 
@@ -66,6 +90,12 @@
                             <span class="input-group-text">$</span>
                             <span class="input-group-text">0.00</span>
                         </div>
+
+                        @error('price')
+                        <span class="text-danger text-sm">
+                            {{ $message }}
+                        </span>
+                        @enderror
                     </div>
                 </div>
 
