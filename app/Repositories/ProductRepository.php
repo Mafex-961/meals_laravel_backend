@@ -18,6 +18,7 @@ class ProductRepository implements ProductInterface
     public function store()
     {
         $product = new Product();
+        $product->shop_id = request()->shop_id;
         $product->category_id = request()->category_id;
         $product->name = request()->name;
         $product->description = request()->description;
@@ -41,6 +42,7 @@ class ProductRepository implements ProductInterface
     {
 
         $product= $this->findById($id);
+        $product->shop_id = request()->shop_id;
         $product->category_id = request()->category_id;
         $product->name = request()->name;
         $product->description = request()->description;

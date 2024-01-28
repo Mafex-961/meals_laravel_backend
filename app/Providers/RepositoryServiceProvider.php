@@ -17,6 +17,15 @@ use App\Repositories\Api\ProductRepository as ApiProductrepository;
 use App\Interfaces\AdminInterface;
 use App\Repositories\AdminRepository;
 
+use App\Interfaces\OwnerInterface;
+use App\Repositories\OwnerRepository;
+
+use App\Interfaces\ShopInterface;
+use App\Repositories\ShopRepository;
+
+use App\Interfaces\SubCategoryInterface;
+use App\Repositories\SubCategoryRepository;
+
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -43,5 +52,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ApiProductInterface::class,ApiProductRepository::class);
 
         $this->app->bind(AdminInterface::class,AdminRepository::class);
+
+        $this->app->bind(OwnerInterface::class,OwnerRepository::class);
+
+        $this->app->bind(ShopInterface::class,ShopRepository::class);
+
+        $this->app->bind(SubCategoryInterface::class,SubCategoryRepository::class);
     }
 }

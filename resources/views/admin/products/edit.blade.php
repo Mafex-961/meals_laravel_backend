@@ -16,7 +16,36 @@
                 <div class="row mb-3">
 
                     <div class="col-lg-3">
-                        <label for="category_id_Input" class="form-label" >Category_id</label>
+                        <label for="shop_id_Input" class="form-label" >shop</label>
+                    </div>
+
+                    <div class="col-lg-9">
+
+                        <select name="shop_id" id="" class="form-control">
+                            @forelse ($shops as $shop)
+
+                            <option
+                            {{$shop->id == $products->shop?->id  ? 'selected'  :  ''}}
+                            value="{{$shop->id}}">
+                                {{$shop->name}}
+                            </option>
+                            @empty
+
+                            @endforelse
+                           </select>
+
+                           @error('shop_id')
+                           <span class="text-danger text-sm">
+                               {{ $message }}
+                           </span>
+                           @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+
+                    <div class="col-lg-3">
+                        <label for="category_id_Input" class="form-label" >Category</label>
                     </div>
 
                     <div class="col-lg-9">

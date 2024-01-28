@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Interfaces\ProductInterface;
+use App\Models\Shop;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use App\Http\Requests\ProductStore;
 use App\Http\Requests\ProductUpdate;
+use App\Interfaces\ProductInterface;
 
 class ProductController extends Controller
 {
@@ -32,8 +33,9 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $shops = Shop::all();
         $categories = Category::all();
-        return view('admin.products.create',compact('categories'));
+        return view('admin.products.create',compact('categories','shops'));
     }
 
     /**
@@ -41,7 +43,7 @@ class ProductController extends Controller
      */
     public function store(ProductStore $request)
     {
-        $data = $request->only(['name','category_id','description','image','price']);
+        $data = $request->only(['name','category_id','description','shop_id','price']);
         $this->ProductInterface->store($data);
         return redirect('admin/product');
     }
@@ -59,10 +61,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-
+        $shops = Shop::all();
         $categories = Category::all();
         $products =$this->ProductInterface->findById($id);
-        return view('admin.products.edit',compact('categories','products'));
+        return view('admin.products.edit',compact('categories','products','shops'));
     }
 
     /**

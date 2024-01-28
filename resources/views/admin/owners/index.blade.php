@@ -19,12 +19,15 @@
                             </th>
                             <th scope="col">Id</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
                             <th scope="col">Action</th>
+                            <th scope="col">Button</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($categories as $category)
+                        @foreach ($owners as $owner)
 
                         <tr>
                             <td>
@@ -33,30 +36,32 @@
                                     <label class="form-check-label" for="cardtableCheck01"></label>
                                 </div>
                             </td>
-                            <td>{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
-                            
+                            <td>{{$owner->id}}</td>
+                            <td>{{$owner->name}}</td>
+                            <td>{{$owner->email}}</td>
+                            <td>{{$owner->password}}</td>
 
-                            <td>
-                                <a href="{{url('admin/category/'.$category->id.'/edit')}}">
-                                <button type="button" class="btn btn-sm btn-light">Edit</button>
+                            <td >
+                                <a href="{{url('admin/owner/'.$owner->id.'/edit')}}">
+                                <button type="button" class="btn btn-sm btn-primary">Edit</button>
                                 </a>
-
-                                <form action="{{url('admin/category/'.$category->id)}}" method="POST">
+                            </td>
+                            <td>
+                                <form action="{{url('admin/owner/'.$owner->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
 
                                 </form>
-
                             </td>
+
                         </tr>
                         @endforeach
 
                     </tbody>
 
-                    <a href="{{url('admin/category/create')}}">
+                    <a href="{{url('admin/owner/create')}}">
                         <button type="button" class="btn btn-primary btn-label waves-effect waves-light"><i class="ri-user-smile-line label-icon align-middle fs-16 me-2"></i> Add</button>
                         </a>
 

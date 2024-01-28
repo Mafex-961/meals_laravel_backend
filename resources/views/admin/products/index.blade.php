@@ -18,11 +18,13 @@
                                 </div>
                             </th>
                             <th scope="col">Id</th>
-                            <th scope="col">Category_Id</th>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">Image</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +39,7 @@
                                 </div>
                             </td>
                             <td>{{$product->id}}</td>
+                            <td>{{$product->shop? $product->shop->name:'hi'}}</td>
                             <td>{{$product->category? $product->category->name:'hi'}}</td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>
@@ -49,11 +52,15 @@
                             </td>
                             <td>{{$product->price}}</td>
 
-                            <td>
+                            <td class="text-right d-none d-md-block">
+
                                 <a href="{{url('admin/product/'.$product->id.'/edit')}}">
-                                <button type="button" class="btn btn-sm btn-light">Edit</button>
+                                <button type="button" class="btn btn-sm btn btn-primary">Edit</button>
                                 </a>
 
+                            </td>
+
+                            <td class="text-right d-none d-md-block">
                                 <form action="{{url('admin/product/'.$product->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')

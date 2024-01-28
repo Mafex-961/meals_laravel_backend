@@ -6,6 +6,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UI\ProductController as UIProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\SubCategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +46,12 @@ Route::resource('/category', CategoryController::class);
 Route::resource('/order', OrderController::class);
 
 Route::resource('/admin', AdminController::class);
+
+Route::resource('owner', OwnerController::class);
+
+Route::resource('shop', ShopController::class);
+
+Route::resource('sub_category', SubCategoryController::class);
 
 });
 

@@ -14,7 +14,30 @@
 
                 <div class="row mb-3">
                     <div class="col-lg-3">
-                        <label for="nameInput" class="form-label" >Category_Id</label>
+                        <label for="nameInput" class="form-label" >Shop</label>
+                    </div>
+                    <div class="col-lg-9">
+                    <select name="shop_id" id="" class="form-control">
+                            @forelse ( $shops as $shop)
+
+                            <option value="{{$shop->id}}">{{$shop->name}}</option>
+
+                            @empty
+
+                            @endforelse
+                    </select>
+
+                    @error('shop_id')
+                    <span class="text-danger text-sm">
+                        {{ $message }}
+                    </span>
+                    @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-lg-3">
+                        <label for="nameInput" class="form-label" >Category</label>
                     </div>
                     <div class="col-lg-9">
                     <select name="category_id" id="" class="form-control">
@@ -37,7 +60,7 @@
 
                 <div class="row mb-3">
                     <div class="col-lg-3">
-                        <label for="nameInput" class="form-label" >Name</label>
+                        <label for="nameInput" class="form-label" >Product Name</label>
                     </div>
                     <div class="col-lg-9">
                         <input name="name" class="form-control" id="nameInput" placeholder="Enter your name">
@@ -102,7 +125,7 @@
 
 
                 <div class="text-end">
-                    <button type="submit" class="btn btn-primary">Add Leave</button>
+                    <button type="submit" class="btn btn-primary">Sell</button>
                 </div>
             </form>
 

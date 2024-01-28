@@ -16,8 +16,17 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+
             </div>
+
+            <div class="text-right d-none d-md-block">
+                <a href="{{url('UI/product')}}">
+                    <button type="button" class="btn btn-secondary btn-label waves-effect waves-light"><i class="ri-user-smile-line label-icon align-middle fs-16 me-2"></i> Shopping</button>
+                    </a>
+            </div>
+
         </div>
+
     </div>
 </div>
 @endsection

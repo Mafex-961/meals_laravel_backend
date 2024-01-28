@@ -50,13 +50,15 @@
                                 @endforeach
                             </td>
                             <td>
+                                <figure class="itemside align-items-center">
                                 @foreach ( $order->orderdetail as $orderdetail )
                                     @if (isset($orderdetail->image))
-                                    <img src="{{ asset('images/' . $orderdetail->image) }}" alt="{{ $orderdetail->name }}" height="20" width="25">
+                                    <img src="{{ asset('images/' . $orderdetail->image) }}" alt="{{ $orderdetail->name }}" width="30px">
                                     @else
                                     No Image
                                     @endif <hr>
                                 @endforeach
+                                </figure>
                             </td>
                             <td>
                                 @foreach ( $order->orderdetail as $orderdetail )

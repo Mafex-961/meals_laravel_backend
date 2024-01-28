@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td colspan="5" class="text-right">
-                 <a href="{{ url('/UI/product') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+                 <a href="{{ url('/UI/product') }}" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a>
                <form action={{url('UI/checkout')}}>
                  <button class="btn btn-success" type="submit">Checkout</button>
                 </form>

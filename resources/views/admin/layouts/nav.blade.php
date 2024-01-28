@@ -64,6 +64,21 @@
                                 data-key="t-product">Admin</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{ url('admin/owner') }}" class="nav-link"
+                                data-key="t-product">Bill</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('admin/shop') }}" class="nav-link"
+                                data-key="t-product">Shop</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url('admin/sub_category') }}" class="nav-link"
+                                data-key="t-product">SubCategory</a>
+                        </li>
+
 
                         </ul>
                     </div>
